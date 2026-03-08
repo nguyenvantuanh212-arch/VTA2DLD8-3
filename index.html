@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chúc mừng Lê Dung 8/3/2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      position: relative;
+      background: linear-gradient(to bottom, #7ec8ff 0%, #aee0ff 45%, #d8f2ff 66%, #8fd36d 66%, #78c45a 100%);
+      cursor: pointer;
+      user-select: none;
+      font-family: "Quicksand", Arial, sans-serif;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      transition: filter 1.2s ease, transform 1.2s ease;
+    }
+
+    .scene.wish-mode {
+      filter: saturate(1.16) brightness(1.1);
+    }
+
+    .sky {
+      position: absolute;
+      inset: 0 0 34% 0;
+      background: linear-gradient(to bottom, #74c7ff 0%, #b6e7ff 70%, #def6ff 100%);
+      z-index: 1;
+      transition: background 1.2s ease;
+    }
+
+    .scene.wish-mode .sky {
+      background: linear-gradient(to bottom, #8fd4ff 0%, #d2f1ff 68%, #f3fcff 100%);
+    }
+
+    .field {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 34%;
+      background:
+        linear-gradient(to top, rgba(71, 135, 46, 0.35), rgba(71, 135, 46, 0) 35%),
+        linear-gradient(to bottom, #91d76b 0%, #7bcb58 55%, #68b346 100%);
+      z-index: 2;
+      overflow: hidden;
+      transition: filter 1.2s ease;
+    }
+
+    .scene.wish-mode .field {
+      filter: brightness(1.08) saturate(1.12);
+    }
+
+    .field::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 2% 84%, rgba(255,255,255,0.10) 0 2px, transparent 3px),
+        radial-gradient(circle at 7% 89%, rgba(255,255,255,0.08) 0 2px, transparent 3px),
+        radial-gradient(circle at 12% 82%, rgba(255,255,255,0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 17% 90%, rgba(255,255,255,0.08) 0 2px, transparent 3px),
+        radial-gradient(circle at 22% 84%, rgba(255,255,255,0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 27% 88%, rgba(255,255,255,0.09) 0 2px, transparent 3px),
+        radial-gradient(circle at 32% 81%, rgba(255,255,255,0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 37% 90%, rgba(255,255,255,0.08) 0 2px, transparent 3px),
+        radial-gradient(circle at 42% 84%, rgba(255,255,255,0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 47% 89%, rgba(255,255,255,0.09) 0 2px, transparent 3px),
+        radial-gradient(circle at 52% 82%, rgba(255,255,255,0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 57% 90%, rgba(255,255,255,0.08) 0 2px, transparent 3px),
+        radial-gradient(circle at 62% 84%, rgba(255,255,255,0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 67% 88%, rgba(255,255,255,0.09) 0 2px, transparent 3px),
+        radial-gradient(circle at 72% 82%, rgba(255,255,255,0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 77% 89%, rgba(255,255,255,0.08) 0 2px, transparent 3px),
+        radial-gradient(circle at 82% 84%, rgba(255,255,255,0.11) 0 2px, transparent 3px),
+        radial-gradient(circle at 87% 89%, rgba(255,255,255,0.09) 0 2px, transparent 3px),
+        radial-gradient(circle at 92% 83%, rgba(255,255,255,0.10) 0 2px, transparent 3px),
+        radial-gradient(circle at 97% 88%, rgba(255,255,255,0.09) 0 2px, transparent 3px);
+      pointer-events: none;
+    }
+
+    .sun {
+      position: absolute;
+      top: 8%;
+      right: 8%;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fffde7 0%, #fff59d 45%, #ffd54f 75%, rgba(255, 213, 79, 0.1) 100%);
+      box-shadow: 0 0 30px rgba(255, 223, 102, 0.7), 0 0 60px rgba(255, 223, 102, 0.35);
+      z-index: 2;
+      pointer-events: none;
+      transition: transform 1.2s ease, box-shadow 1.2s ease;
+    }
+
+    .sun-rays {
+      position: absolute;
+      inset: -34px;
+      border-radius: 50%;
+      z-index: 1;
+      opacity: 0;
+      transform: scale(0.85) rotate(0deg);
+      transition: opacity 0.8s ease, transform 1.2s ease;
+      background:
+        repeating-conic-gradient(
+          from 0deg,
+          rgba(255, 235, 130, 0.72) 0deg 6deg,
+          rgba(255, 235, 130, 0) 6deg 18deg
+        );
+      filter: blur(1px);
+      pointer-events: none;
+    }
+
+    .scene.wish-mode .sun {
+      transform: scale(1.1);
+      box-shadow: 0 0 42px rgba(255, 223, 102, 0.95), 0 0 105px rgba(255, 223, 102, 0.52);
+    }
+
+    .scene.wish-mode .sun-rays {
+      opacity: 1;
+      transform: scale(1.22) rotate(20deg);
+      animation: raySpin 6s linear infinite;
+    }
+
+    @keyframes raySpin {
+      from { transform: scale(1.22) rotate(0deg); }
+      to { transform: scale(1.22) rotate(360deg); }
+    }
+
+    .cloud {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 999px;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.08));
+      opacity: 0.96;
+      z-index: 3;
+      animation-name: drift;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      pointer-events: none;
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: "";
+      position: absolute;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 50%;
+    }
+
+    .cloud::before {
+      width: 45%;
+      height: 90%;
+      left: 12%;
+      top: -42%;
+    }
+
+    .cloud::after {
+      width: 35%;
+      height: 75%;
+      right: 15%;
+      top: -30%;
+    }
+
+    @keyframes drift {
+      from { transform: translateX(0); }
+      to { transform: translateX(155vw); }
+    }
+
+    .content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .card {
+      max-width: 980px;
+      width: min(92vw, 980px);
+      padding: 32px 28px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+      text-align: center;
+      pointer-events: none;
+      transition: transform 1s ease, box-shadow 1s ease, background 1s ease;
+    }
+
+    .scene.wish-mode .card {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 22px 55px rgba(255, 155, 190, 0.25);
+    }
+
+    h1 {
+      margin: 0 auto;
+      max-width: 900px;
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(2.3rem, 5vw, 5rem);
+      line-height: 1.22;
+      font-weight: 400;
+      color: #c93972;
+      text-shadow: 0 2px 10px rgba(255,255,255,0.45);
+      transition: text-shadow 1s ease, transform 1s ease, color 1s ease, opacity 0.8s ease;
+    }
+.wish-text {
+  font-size: clamp(1.45rem, 2.6vw, 2.6rem);
+  line-height: 1.38;
+}
+    .scene.wish-mode h1 {
+      color: #d63384;
+      text-shadow:
+        0 0 8px rgba(255,255,255,0.8),
+        0 0 18px rgba(255,182,215,0.9),
+        0 0 32px rgba(255,182,215,0.7);
+      transform: scale(1.02);
+    }
+
+    .music-note {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 12;
+      background: rgba(255,255,255,0.76);
+      color: #c93972;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    .hold-tip {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      z-index: 12;
+      background: rgba(255,255,255,0.76);
+      color: #7b4b5a;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.92rem;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    .butterfly,
+    .seed,
+    .sparkle,
+    .trail-petal,
+    .trail-light,
+    .message-pop,
+    .heart-pop,
+    .ambient-fluff,
+    .ambient-head,
+    .flying-clover {
+      position: absolute;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+
+    .butterfly {
+      width: 26px;
+      height: 20px;
+      z-index: 8;
+    }
+
+    .butterfly .wing {
+      position: absolute;
+      width: 14px;
+      height: 18px;
+      border-radius: 14px 14px 10px 10px;
+      animation: flap 0.22s ease-in-out infinite alternate;
+      transform-origin: center right;
+      opacity: 0.95;
+    }
+
+    .butterfly .wing.left {
+      left: 0;
+      top: 0;
+      transform-origin: right center;
+      border-radius: 14px 10px 12px 10px;
+    }
+
+    .butterfly .wing.right {
+      right: 0;
+      top: 0;
+      transform-origin: left center;
+      border-radius: 10px 14px 10px 12px;
+    }
+
+    .butterfly .body {
+      position: absolute;
+      left: 50%;
+      top: 2px;
+      width: 4px;
+      height: 16px;
+      background: #3d2a1f;
+      border-radius: 999px;
+      transform: translateX(-50%);
+    }
+
+    .butterfly .body::before,
+    .butterfly .body::after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      width: 1.5px;
+      height: 7px;
+      background: #3d2a1f;
+      border-radius: 999px;
+    }
+
+    .butterfly .body::before {
+      left: -2px;
+      transform: rotate(-28deg);
+    }
+
+    .butterfly .body::after {
+      right: -2px;
+      transform: rotate(28deg);
+    }
+
+    @keyframes flap {
+      from { transform: rotateY(0deg) scaleY(1); }
+      to { transform: rotateY(70deg) scaleY(0.92); }
+    }
+
+    .seed {
+      font-size: 24px;
+      line-height: 1;
+      color: rgba(255,255,255,0.98);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.14);
+      animation: spin 2.8s linear infinite;
+      z-index: 8;
+    }
+
+    .ambient-fluff {
+      font-size: 14px;
+      color: rgba(255,255,255,0.95);
+      text-shadow: 0 1px 5px rgba(0,0,0,0.12);
+      z-index: 7;
+      animation: spin 4s linear infinite;
+    }
+
+    .ambient-head {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(255,255,255,1) 0 18%, rgba(255,255,255,0.95) 19% 38%, rgba(255,255,255,0.82) 39% 55%, rgba(255,255,255,0.0) 56%);
+      box-shadow: 0 0 8px rgba(255,255,255,0.65);
+      z-index: 7;
+    }
+
+    .ambient-head::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: repeating-conic-gradient(from 0deg, rgba(255,255,255,0.92) 0 5deg, transparent 5deg 14deg);
+      opacity: 0.9;
+      mask: radial-gradient(circle, transparent 0 36%, #000 42% 70%, transparent 75%);
+      -webkit-mask: radial-gradient(circle, transparent 0 36%, #000 42% 70%, transparent 75%);
+    }
+
+    .flying-clover {
+      width: 20px;
+      height: 24px;
+      z-index: 8;
+    }
+
+    .flying-clover .leaf {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(135deg, #84ea74, #49b64c);
+      border-radius: 85% 15% 85% 15%;
+      box-shadow: inset 0 0 2px rgba(255,255,255,0.35);
+    }
+
+    .flying-clover .leaf.top    { left: 5px;  top: 0;  transform: rotate(45deg); }
+    .flying-clover .leaf.right  { left: 10px; top: 5px; transform: rotate(135deg); }
+    .flying-clover .leaf.bottom { left: 5px;  top: 10px; transform: rotate(-135deg); }
+    .flying-clover .leaf.left   { left: 0;   top: 5px; transform: rotate(-45deg); }
+
+    .flying-clover .center {
+      position: absolute;
+      left: 7px;
+      top: 7px;
+      width: 6px;
+      height: 6px;
+      background: #66be58;
+      border-radius: 50%;
+      opacity: 0.85;
+    }
+
+    .flying-clover .stem {
+      position: absolute;
+      width: 2px;
+      height: 14px;
+      left: 9px;
+      top: 13px;
+      background: linear-gradient(to bottom, #4d8b32, #6fb54a);
+      border-radius: 999px;
+      transform: rotate(16deg);
+      transform-origin: top center;
+    }
+
+    @keyframes spin {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
+    }
+
+    .sparkle {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,223,245,0.95) 45%, rgba(255,223,245,0) 75%);
+      z-index: 7;
+      box-shadow: 0 0 12px rgba(255,255,255,0.95);
+    }
+
+    .trail-petal {
+      width: 12px;
+      height: 12px;
+      border-radius: 70% 30% 70% 30%;
+      background: linear-gradient(135deg, #ffd0e6, #ff9fc8);
+      z-index: 7;
+      opacity: 0.88;
+    }
+
+    .trail-light {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      z-index: 7;
+      box-shadow: 0 0 10px rgba(255,255,255,0.9);
+    }
+
+    .message-pop {
+      z-index: 11;
+      padding: 8px 14px;
+      background: rgba(255,255,255,0.82);
+      color: #c93972;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
+      font-family: "Quicksand", sans-serif;
+    }
+
+    .heart-pop {
+      font-size: 18px;
+      color: #ff6fa6;
+      z-index: 8;
+      text-shadow: 0 2px 8px rgba(255,255,255,0.7);
+    }
+
+    .dandelion {
+      position: absolute;
+      bottom: 0;
+      width: 54px;
+      height: 130px;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .dandelion .stem {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 3px;
+      height: 98px;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, #4d8b32, #6fb54a);
+      border-radius: 999px;
+    }
+
+    .dandelion .flower {
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      width: 30px;
+      height: 30px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(255,255,255,1) 0 20%, rgba(255,255,255,0.95) 21% 40%, rgba(255,255,255,0.82) 41% 55%, rgba(255,255,255,0.0) 56%),
+        radial-gradient(circle, rgba(255,255,255,0.95) 0 1px, transparent 2px);
+      box-shadow: 0 0 10px rgba(255,255,255,0.75);
+    }
+
+    .dandelion .flower::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: repeating-conic-gradient(from 0deg, rgba(255,255,255,0.95) 0 5deg, transparent 5deg 14deg);
+      opacity: 0.9;
+      mask: radial-gradient(circle, transparent 0 37%, #000 42% 70%, transparent 74%);
+      -webkit-mask: radial-gradient(circle, transparent 0 37%, #000 42% 70%, transparent 74%);
+    }
+
+    .clover {
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+      width: 26px;
+      height: 32px;
+    }
+
+    .clover .leaf {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: linear-gradient(135deg, #84ea74, #49b64c);
+      border-radius: 85% 15% 85% 15%;
+      box-shadow: inset 0 0 2px rgba(255,255,255,0.35);
+    }
+
+    .clover .leaf.top    { left: 7px;  top: 0;  transform: rotate(45deg); }
+    .clover .leaf.right  { left: 13px; top: 7px; transform: rotate(135deg); }
+    .clover .leaf.bottom { left: 7px;  top: 14px; transform: rotate(-135deg); }
+    .clover .leaf.left   { left: 1px;  top: 7px; transform: rotate(-45deg); }
+
+    .clover .center {
+      position: absolute;
+      left: 9px;
+      top: 9px;
+      width: 8px;
+      height: 8px;
+      background: #66be58;
+      border-radius: 50%;
+      opacity: 0.85;
+    }
+
+    .clover .stem {
+      position: absolute;
+      width: 2px;
+      height: 18px;
+      left: 12px;
+      top: 17px;
+      background: linear-gradient(to bottom, #4d8b32, #6fb54a);
+      border-radius: 999px;
+      transform: rotate(16deg);
+      transform-origin: top center;
+    }
+
+    @media (max-width: 700px) {
+      .card {
+        padding: 24px 18px;
+        border-radius: 24px;
+      }
+
+      .music-note,
+      .hold-tip {
+        font-size: 0.82rem;
+        top: 12px;
+      }
+
+      .music-note { left: 12px; }
+      .hold-tip { right: 12px; }
+
+      .sun {
+        width: 72px;
+        height: 72px;
+      }
+
+      .message-pop {
+        font-size: 0.85rem;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 8vw, 4rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene" id="scene">
+    <div class="sky" id="sky"></div>
+
+    <div class="sun">
+      <div class="sun-rays"></div>
+    </div>
+
+    <div class="field" id="field"></div>
+
+    <div class="content">
+      <div class="card">
+        <h1 id="mainTitle">Chúc mừng Lê Dung<br>nhân ngày Quốc tế Phụ nữ</h1>
+      </div>
+    </div>
+
+    <div class="music-note" id="musicStatus">🎵 Đang cố tự bật nhạc...</div>
+    <div class="hold-tip">✨ Nhấn giữ để kích hoạt điều ước</div>
+  </div>
+
+  <audio id="bgMusic" autoplay loop playsinline preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const scene = document.getElementById("scene");
+    const field = document.getElementById("field");
+    const bgMusic = document.getElementById("bgMusic");
+    const musicStatus = document.getElementById("musicStatus");
+    const mainTitle = document.getElementById("mainTitle");
+
+    let holdTimer = null;
+    let holdTriggered = false;
+    let isPointerDown = false;
+    let lastTrailTime = 0;
+    let wishCooldown = false;
+    let titleChangedForever = false;
+    let fieldAutoFloatPausedUntil = 0;
+
+    const popMessages = [
+      "Một ngày thật dịu dàng",
+      "Bình an và hạnh phúc nhé",
+      "Những điều đẹp nhất sẽ đến",
+      "Một chút ngọt ngào cho hôm nay",
+      "Luôn vui vẻ và rạng rỡ nhé",
+      "Mong mọi điều như ý"
+    ];
+
+    function createCloud({ top, left, width, height, duration, delay, opacity }) {
+      const cloud = document.createElement("div");
+      cloud.className = "cloud";
+      cloud.style.top = top + "%";
+      cloud.style.left = left + "vw";
+      cloud.style.width = width + "px";
+      cloud.style.height = height + "px";
+      cloud.style.animationDuration = duration + "s";
+      cloud.style.animationDelay = delay + "s";
+      cloud.style.opacity = opacity;
+      scene.appendChild(cloud);
+    }
+
+    [
+      { top: 5,  left: -18, width: 110, height: 34, duration: 52,  delay: -8,  opacity: 0.84 },
+      { top: 8,  left: -28, width: 165, height: 50, duration: 78,  delay: -21, opacity: 0.92 },
+      { top: 11, left: -35, width: 240, height: 70, duration: 110, delay: -47, opacity: 0.95 },
+      { top: 14, left: -12, width: 135, height: 42, duration: 60,  delay: -16, opacity: 0.88 },
+      { top: 17, left: -32, width: 200, height: 58, duration: 96,  delay: -39, opacity: 0.93 },
+      { top: 20, left: -24, width: 95,  height: 30, duration: 48,  delay: -12, opacity: 0.80 },
+      { top: 23, left: -40, width: 170, height: 54, duration: 84,  delay: -57, opacity: 0.90 },
+      { top: 26, left: -10, width: 260, height: 74, duration: 124, delay: -73, opacity: 0.94 },
+      { top: 29, left: -36, width: 145, height: 44, duration: 68,  delay: -25, opacity: 0.86 },
+      { top: 32, left: -20, width: 185, height: 56, duration: 90,  delay: -50, opacity: 0.91 },
+      { top: 35, left: -30, width: 120, height: 36, duration: 58,  delay: -33, opacity: 0.83 },
+      { top: 38, left: -14, width: 220, height: 64, duration: 118, delay: -64, opacity: 0.92 }
+    ].forEach(createCloud);
+
+    function createDandelion(leftPercent, bottomPx = 0, scale = 1) {
+      const d = document.createElement("div");
+      d.className = "dandelion";
+      d.style.left = leftPercent + "%";
+      d.style.bottom = bottomPx + "px";
+      d.style.transform = `translateX(-50%) scale(${scale})`;
+
+      const stem = document.createElement("div");
+      stem.className = "stem";
+      const flower = document.createElement("div");
+      flower.className = "flower";
+
+      d.appendChild(stem);
+      d.appendChild(flower);
+      field.appendChild(d);
+    }
+
+    function createLuckyClover(leftPercent, bottomPx = 0, scale = 1) {
+      const c = document.createElement("div");
+      c.className = "clover";
+      c.style.left = leftPercent + "%";
+      c.style.bottom = bottomPx + "px";
+      c.style.transform = `translateX(-50%) scale(${scale}) rotate(${(-12 + Math.random() * 24)}deg)`;
+
+      ["top", "right", "bottom", "left"].forEach(name => {
+        const leaf = document.createElement("div");
+        leaf.className = "leaf " + name;
+        c.appendChild(leaf);
+      });
+
+      const center = document.createElement("div");
+      center.className = "center";
+      const stem = document.createElement("div");
+      stem.className = "stem";
+
+      c.appendChild(center);
+      c.appendChild(stem);
+      field.appendChild(c);
+    }
+
+    function createAlternatingField() {
+      const rows = [
+  { count: 42, bottomMin: -10, bottomMax: 5,  scaleMin: 0.42, scaleMax: 0.58 },
+  { count: 34, bottomMin: 2,   bottomMax: 14, scaleMin: 0.52, scaleMax: 0.70 },
+  { count: 28, bottomMin: 10,  bottomMax: 24, scaleMin: 0.64, scaleMax: 0.84 },
+  { count: 20, bottomMin: 18,  bottomMax: 36, scaleMin: 0.78, scaleMax: 1.02 },
+  { count: 14, bottomMin: 28,  bottomMax: 50, scaleMin: 0.96, scaleMax: 1.20 }
+];
+
+      rows.forEach((row, rowIndex) => {
+        for (let i = 0; i < row.count; i++) {
+          const base = (i + 0.5) * (100 / row.count);
+          const jitter = (Math.random() - 0.5) * (100 / row.count) * 0.72;
+          const left = Math.max(0.5, Math.min(99.5, base + jitter));
+          const bottom = row.bottomMin + Math.random() * (row.bottomMax - row.bottomMin);
+          const scale = row.scaleMin + Math.random() * (row.scaleMax - row.scaleMin);
+
+          const placeClover = (i + rowIndex) % 4 === 0;
+          if (placeClover) {
+            createLuckyClover(left, bottom - 2, Math.max(0.45, scale * 0.82));
+          } else {
+            createDandelion(left, bottom, scale);
+          }
+        }
+      });
+    }
+
+    createAlternatingField();
+
+    async function tryAutoplay() {
+      try {
+        bgMusic.volume = 1.0;
+        await bgMusic.play();
+        musicStatus.textContent = "🎵 Nhạc đang phát";
+      } catch (err) {
+        musicStatus.textContent = "🎵 Trình duyệt chặn autoplay có tiếng • click 1 lần để phát nhạc";
+      }
+    }
+
+    function resumeMusicOnFirstInteraction() {
+      const start = async () => {
+        try {
+          await bgMusic.play();
+          musicStatus.textContent = "🎵 Nhạc đang phát";
+        } catch (err) {
+          musicStatus.textContent = "🎵 Không thể tự phát nhạc trên trình duyệt này";
+        }
+        window.removeEventListener("pointerdown", start);
+        window.removeEventListener("touchstart", start);
+        window.removeEventListener("click", start);
+      };
+
+      window.addEventListener("pointerdown", start, { once: true });
+      window.addEventListener("touchstart", start, { once: true });
+      window.addEventListener("click", start, { once: true });
+    }
+
+    function randomButterflyColors() {
+      const palettes = [
+        ["#ff77aa", "#ffb3cc"],
+        ["#7b68ee", "#b8a9ff"],
+        ["#ff9f43", "#ffd166"],
+        ["#4ecdc4", "#b8fff1"],
+        ["#ff6b6b", "#ffd1d1"],
+        ["#8bc34a", "#d9ffb3"]
+      ];
+      return palettes[Math.floor(Math.random() * palettes.length)];
+    }
+
+    function spawnButterflies(x, y, countOverride = null, wide = false) {
+      const count = countOverride ?? (5 + Math.floor(Math.random() * 4));
+
+      for (let i = 0; i < count; i++) {
+        const butterfly = document.createElement("div");
+        butterfly.className = "butterfly";
+
+        const leftWing = document.createElement("div");
+        leftWing.className = "wing left";
+        const rightWing = document.createElement("div");
+        rightWing.className = "wing right";
+        const body = document.createElement("div");
+        body.className = "body";
+
+        const [c1, c2] = randomButterflyColors();
+        leftWing.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
+        rightWing.style.background = `linear-gradient(225deg, ${c1}, ${c2})`;
+
+        butterfly.appendChild(leftWing);
+        butterfly.appendChild(rightWing);
+        butterfly.appendChild(body);
+
+        butterfly.style.left = x + "px";
+        butterfly.style.top = y + "px";
+        scene.appendChild(butterfly);
+
+        const spread = wide ? 420 : 260;
+        const dx = (Math.random() - 0.5) * spread + (Math.random() > 0.5 ? 120 : -120);
+        const dy = -(140 + Math.random() * (wide ? 260 : 180));
+        const spin = (Math.random() - 0.5) * 140;
+        const duration = (wide ? 3400 : 2600) + Math.random() * 1800;
+        const driftX = (Math.random() - 0.5) * (wide ? 140 : 90);
+
+        const startX = x;
+        const startY = y;
+        const startTime = performance.now();
+
+        function animateButterfly(now) {
+          const t = Math.min((now - startTime) / duration, 1);
+          const ease = 1 - Math.pow(1 - t, 3);
+          const currentX = startX + dx * ease + Math.sin(t * 10 + i) * driftX;
+          const currentY = startY + dy * ease + Math.sin(t * 16 + i) * 18;
+          const opacity = 1 - t * 0.85;
+
+          butterfly.style.transform = `translate(${currentX - startX}px, ${currentY - startY}px) rotate(${spin * ease}deg) scale(${1 - t * 0.2})`;
+          butterfly.style.opacity = opacity;
+
+          if (t < 1) requestAnimationFrame(animateButterfly);
+          else butterfly.remove();
+        }
+
+        requestAnimationFrame(animateButterfly);
+      }
+    }
+
+    function spawnWhirlingDandelionSeeds(x, y, count = 14, extraHigh = false) {
+      for (let i = 0; i < count; i++) {
+        const seed = document.createElement("div");
+        seed.className = "seed";
+        seed.textContent = "✺";
+        seed.style.left = x + "px";
+        seed.style.top = y + "px";
+        scene.appendChild(seed);
+
+        const radius = 25 + Math.random() * 55;
+        const swirlTurns = 1.4 + Math.random() * 1.8;
+        const rise = (extraHigh ? 380 : 260) + Math.random() * (extraHigh ? 340 : 280);
+        const drift = (Math.random() - 0.5) * (extraHigh ? 220 : 140);
+        const duration = (extraHigh ? 4200 : 3200) + Math.random() * 2200;
+        const scale = 0.7 + Math.random() * 1.0;
+        const startTime = performance.now();
+        const phase = Math.random() * Math.PI * 2;
+
+        function animate(now) {
+          const t = Math.min((now - startTime) / duration, 1);
+          const angle = phase + t * Math.PI * 2 * swirlTurns;
+          const spiralRadius = radius * (1 - t * 0.45);
+          const currentX = Math.cos(angle) * spiralRadius + drift * t;
+          const currentY = -Math.sin(angle) * 18 - rise * t;
+          const opacity = 1 - t;
+          const currentScale = scale * (1 - t * 0.2);
+
+          seed.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
+          seed.style.opacity = opacity;
+
+          if (t < 1) requestAnimationFrame(animate);
+          else seed.remove();
+        }
+
+        requestAnimationFrame(animate);
+      }
+    }
+
+    function spawnWhirlingDandelionHeads(x, y, count = 3, extraHigh = false) {
+      for (let i = 0; i < count; i++) {
+        const head = document.createElement("div");
+        head.className = "ambient-head";
+        head.style.left = x + "px";
+        head.style.top = y + "px";
+        scene.appendChild(head);
+
+        const radius = 20 + Math.random() * 35;
+        const swirlTurns = 1.1 + Math.random() * 1.2;
+        const rise = (extraHigh ? 320 : 210) + Math.random() * (extraHigh ? 260 : 220);
+        const drift = (Math.random() - 0.5) * (extraHigh ? 180 : 110);
+        const duration = (extraHigh ? 4400 : 3600) + Math.random() * 1800;
+        const scale = 0.9 + Math.random() * 0.7;
+        const startTime = performance.now();
+        const phase = Math.random() * Math.PI * 2;
+
+        function animate(now) {
+          const t = Math.min((now - startTime) / duration, 1);
+          const angle = phase + t * Math.PI * 2 * swirlTurns;
+          const spiralRadius = radius * (1 - t * 0.4);
+          const currentX = Math.cos(angle) * spiralRadius + drift * t;
+          const currentY = Math.sin(angle) * 10 - rise * t;
+          head.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale * (1 - t * 0.18)})`;
+          head.style.opacity = 0.95 - t * 0.95;
+
+          if (t < 1) requestAnimationFrame(animate);
+          else head.remove();
+        }
+
+        requestAnimationFrame(animate);
+      }
+    }
+
+    function spawnFlyingClovers(x, y, count = 10) {
+      for (let i = 0; i < count; i++) {
+        const c = document.createElement("div");
+        c.className = "flying-clover";
+
+        ["top", "right", "bottom", "left"].forEach(name => {
+          const leaf = document.createElement("div");
+          leaf.className = "leaf " + name;
+          c.appendChild(leaf);
+        });
+
+        const center = document.createElement("div");
+        center.className = "center";
+        const stem = document.createElement("div");
+        stem.className = "stem";
+        c.appendChild(center);
+        c.appendChild(stem);
+
+        c.style.left = x + "px";
+        c.style.top = y + "px";
+        scene.appendChild(c);
+
+        const radius = 18 + Math.random() * 40;
+        const swirlTurns = 1 + Math.random() * 1.6;
+        const rise = 240 + Math.random() * 300;
+        const drift = (Math.random() - 0.5) * 180;
+        const duration = 3600 + Math.random() * 2200;
+        const scale = 0.8 + Math.random() * 0.9;
+        const rotBase = (Math.random() - 0.5) * 220;
+        const startTime = performance.now();
+        const phase = Math.random() * Math.PI * 2;
+
+        function animate(now) {
+          const t = Math.min((now - startTime) / duration, 1);
+          const angle = phase + t * Math.PI * 2 * swirlTurns;
+          const spiralRadius = radius * (1 - t * 0.42);
+          const currentX = Math.cos(angle) * spiralRadius + drift * t;
+          const currentY = Math.sin(angle) * 10 - rise * t;
+          c.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale * (1 - t * 0.18)}) rotate(${rotBase * t}deg)`;
+          c.style.opacity = 0.95 - t * 0.95;
+
+          if (t < 1) requestAnimationFrame(animate);
+          else c.remove();
+        }
+
+        requestAnimationFrame(animate);
+      }
+    }
+
+    function spawnSparkles(x, y, amount = 8) {
+      for (let i = 0; i < amount; i++) {
+        const s = document.createElement("div");
+        s.className = "sparkle";
+        s.style.left = x + "px";
+        s.style.top = y + "px";
+        scene.appendChild(s);
+
+        const dx = (Math.random() - 0.5) * 120;
+        const dy = (Math.random() - 0.5) * 120;
+        const duration = 700 + Math.random() * 700;
+        const start = performance.now();
+
+        function animate(now) {
+          const t = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - t, 2);
+          s.style.transform = `translate(${dx * ease}px, ${dy * ease}px) scale(${1 - t * 0.5})`;
+          s.style.opacity = 1 - t;
+
+          if (t < 1) requestAnimationFrame(animate);
+          else s.remove();
+        }
+
+        requestAnimationFrame(animate);
+      }
+    }
+
+    function spawnHeartPop(x, y) {
+      const heart = document.createElement("div");
+      heart.className = "heart-pop";
+      heart.textContent = Math.random() > 0.5 ? "❤" : "💖";
+      heart.style.left = x + "px";
+      heart.style.top = y + "px";
+      scene.appendChild(heart);
+
+      const dx = (Math.random() - 0.5) * 50;
+      const dy = -80 - Math.random() * 50;
+      const duration = 1200;
+      const start = performance.now();
+
+      function animate(now) {
+        const t = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - t, 2);
+        heart.style.transform = `translate(${dx * ease}px, ${dy * ease}px) scale(${1 + 0.3 * ease})`;
+        heart.style.opacity = 1 - t;
+
+        if (t < 1) requestAnimationFrame(animate);
+        else heart.remove();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    function spawnMessagePop(x, y) {
+      const msg = document.createElement("div");
+      msg.className = "message-pop";
+      msg.textContent = popMessages[Math.floor(Math.random() * popMessages.length)];
+      msg.style.left = x + "px";
+      msg.style.top = y + "px";
+      scene.appendChild(msg);
+
+      const dx = (Math.random() - 0.5) * 50;
+      const dy = -90 - Math.random() * 40;
+      const duration = 1800;
+      const start = performance.now();
+
+      function animate(now) {
+        const t = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - t, 2);
+        msg.style.transform = `translate(${dx * ease}px, ${dy * ease}px) scale(${1 + ease * 0.04})`;
+        msg.style.opacity = 1 - t;
+
+        if (t < 1) requestAnimationFrame(animate);
+        else msg.remove();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    function clickSurprise(x, y) {
+      const r = Math.random();
+      if (r < 0.33) spawnMessagePop(x, y);
+      else if (r < 0.66) spawnHeartPop(x, y);
+      else spawnSparkles(x, y, 10);
+    }
+
+    function createTrailAt(x, y) {
+      const petal = document.createElement("div");
+      petal.className = "trail-petal";
+      petal.style.left = x + "px";
+      petal.style.top = y + "px";
+      petal.style.rotate = (Math.random() * 360) + "deg";
+      scene.appendChild(petal);
+
+      const light = document.createElement("div");
+      light.className = "trail-light";
+      light.style.left = (x + (Math.random() - 0.5) * 10) + "px";
+      light.style.top = (y + (Math.random() - 0.5) * 10) + "px";
+      scene.appendChild(light);
+
+      const duration = 900 + Math.random() * 500;
+      const dy = -20 - Math.random() * 20;
+      const dx = (Math.random() - 0.5) * 24;
+      const start = performance.now();
+
+      function animateTrail(now) {
+        const t = Math.min((now - start) / duration, 1);
+        petal.style.transform = `translate(${dx * t}px, ${dy * t}px) scale(${1 - t * 0.45}) rotate(${(1 - t) * 20}deg)`;
+        petal.style.opacity = 0.9 - t * 0.9;
+
+        light.style.transform = `translate(${dx * 0.5 * t}px, ${(dy - 8) * t}px) scale(${1 - t * 0.4})`;
+        light.style.opacity = 0.95 - t * 0.95;
+
+        if (t < 1) requestAnimationFrame(animateTrail);
+        else {
+          petal.remove();
+          light.remove();
+        }
+      }
+
+      requestAnimationFrame(animateTrail);
+    }
+
+    function changeCenterMessageForever() {
+  if (titleChangedForever) return;
+  titleChangedForever = true;
+
+  mainTitle.style.opacity = "0";
+
+  setTimeout(() => {
+    mainTitle.innerHTML = "Chúc em 8/3 và những ngày khác nữa<br>luôn rạng rỡ, vui vẻ, bình an,<br>ngập tràn yêu thương và hạnh phúc!";
+    mainTitle.style.opacity = "1";
+  }, 450);
+}
+
+    function triggerWishMoment(x, y) {
+      if (wishCooldown) return;
+      wishCooldown = true;
+      scene.classList.add("wish-mode");
+
+      spawnSparkles(x, y, 30);
+      spawnMessagePop(x, y);
+      spawnHeartPop(x + 20, y - 10);
+
+      const rect = scene.getBoundingClientRect();
+
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const bx = rect.width * (0.08 + Math.random() * 0.84);
+          const by = rect.height * (0.18 + Math.random() * 0.55);
+          spawnButterflies(bx, by, 8, true);
+        }, i * 180);
+      }
+
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const sx = rect.width * (0.08 + Math.random() * 0.84);
+          const sy = rect.height * (0.70 + Math.random() * 0.22);
+          spawnWhirlingDandelionSeeds(sx, sy, 14, true);
+          spawnWhirlingDandelionHeads(sx + (Math.random() - 0.5) * 50, sy - 8, 3, true);
+        }, i * 170);
+      }
+
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const cx = rect.width * (0.08 + Math.random() * 0.84);
+          const cy = rect.height * (0.72 + Math.random() * 0.2);
+          spawnFlyingClovers(cx, cy, 8);
+        }, i * 190);
+      }
+
+      setTimeout(() => {
+        changeCenterMessageForever();
+      }, 1200);
+
+      setTimeout(() => {
+        scene.classList.remove("wish-mode");
+      }, 4600);
+
+      setTimeout(() => {
+        wishCooldown = false;
+      }, 5600);
+    }
+
+    function getXYFromEvent(e) {
+      const rect = scene.getBoundingClientRect();
+      let clientX, clientY;
+
+      if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else if (e.changedTouches && e.changedTouches.length > 0) {
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top,
+        rect
+      };
+    }
+
+    function spawnAmbientDandelionDrift() {
+      if (Date.now() < fieldAutoFloatPausedUntil) return;
+
+      const rect = scene.getBoundingClientRect();
+      const x = rect.width * Math.random();
+      const y = rect.height * (0.78 + Math.random() * 0.18);
+
+      if (Math.random() < 0.82) {
+        const fluff = document.createElement("div");
+        fluff.className = "ambient-fluff";
+        fluff.textContent = Math.random() < 0.5 ? "✦" : "✺";
+        fluff.style.left = x + "px";
+        fluff.style.top = y + "px";
+        scene.appendChild(fluff);
+
+        const drift = (Math.random() - 0.5) * 70;
+        const rise = 120 + Math.random() * 140;
+        const sway = 14 + Math.random() * 24;
+        const duration = 5200 + Math.random() * 4200;
+        const scale = 0.55 + Math.random() * 0.65;
+        const startTime = performance.now();
+        const phase = Math.random() * Math.PI * 2;
+
+        function animate(now) {
+          const t = Math.min((now - startTime) / duration, 1);
+          const currentX = drift * t + Math.sin(t * 6 + phase) * sway;
+          const currentY = -rise * t;
+          fluff.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale * (1 - t * 0.18)})`;
+          fluff.style.opacity = 0.88 - t * 0.88;
+
+          if (t < 1) requestAnimationFrame(animate);
+          else fluff.remove();
+        }
+
+        requestAnimationFrame(animate);
+      } else {
+        const head = document.createElement("div");
+        head.className = "ambient-head";
+        head.style.left = x + "px";
+        head.style.top = y + "px";
+        scene.appendChild(head);
+
+        const drift = (Math.random() - 0.5) * 85;
+        const rise = 110 + Math.random() * 120;
+        const sway = 16 + Math.random() * 26;
+        const duration = 6200 + Math.random() * 3600;
+        const scale = 0.72 + Math.random() * 0.5;
+        const startTime = performance.now();
+        const phase = Math.random() * Math.PI * 2;
+
+        function animate(now) {
+          const t = Math.min((now - startTime) / duration, 1);
+          const currentX = drift * t + Math.sin(t * 5.5 + phase) * sway;
+          const currentY = -rise * t;
+          head.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale * (1 - t * 0.16)})`;
+          head.style.opacity = 0.92 - t * 0.92;
+
+          if (t < 1) requestAnimationFrame(animate);
+          else head.remove();
+        }
+
+        requestAnimationFrame(animate);
+      }
+    }
+
+    scene.addEventListener("click", (e) => {
+      if (holdTriggered) {
+        holdTriggered = false;
+        return;
+      }
+
+      const { x, y, rect } = getXYFromEvent(e);
+
+      if (y > rect.height * 0.66) {
+        spawnWhirlingDandelionSeeds(x, y, 16, true);
+        spawnWhirlingDandelionHeads(x, y, 3, true);
+        fieldAutoFloatPausedUntil = Date.now() + 1600;
+      } else {
+        spawnButterflies(x, y);
+      }
+
+      clickSurprise(x, y);
+    });
+
+    function onPointerStart(e) {
+      isPointerDown = true;
+      holdTriggered = false;
+      clearTimeout(holdTimer);
+
+      const { x, y } = getXYFromEvent(e);
+      holdTimer = setTimeout(() => {
+        holdTriggered = true;
+        triggerWishMoment(x, y);
+      }, 1200);
+    }
+
+    function onPointerEnd() {
+      isPointerDown = false;
+      clearTimeout(holdTimer);
+    }
+
+    function onPointerMove(e) {
+      const now = Date.now();
+      if (now - lastTrailTime < 35) return;
+      lastTrailTime = now;
+
+      const { x, y } = getXYFromEvent(e);
+      if (isPointerDown || e.type === "mousemove" || e.type === "touchmove") {
+        createTrailAt(x, y);
+      }
+    }
+
+    scene.addEventListener("mousedown", onPointerStart);
+    scene.addEventListener("touchstart", onPointerStart, { passive: true });
+    scene.addEventListener("mouseup", onPointerEnd);
+    scene.addEventListener("mouseleave", onPointerEnd);
+    scene.addEventListener("touchend", onPointerEnd);
+    scene.addEventListener("touchcancel", onPointerEnd);
+
+    scene.addEventListener("mousemove", onPointerMove);
+    scene.addEventListener("touchmove", onPointerMove, { passive: true });
+
+    window.addEventListener("load", () => {
+      tryAutoplay();
+      resumeMusicOnFirstInteraction();
+      setInterval(spawnAmbientDandelionDrift, 1350);
+    });
+  </script>
+</body>
+</html>
